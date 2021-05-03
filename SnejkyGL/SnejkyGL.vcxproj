@@ -17,7 +17,6 @@
       <Configuration>Release</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
-
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -53,25 +52,23 @@
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
-
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
-  <ImportGroup Label="Shared" >
+  <ImportGroup Label="Shared">
   </ImportGroup>
-    <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    </ImportGroup>
-    <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    </ImportGroup>
-    <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    </ImportGroup>
-    <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-      <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    </ImportGroup>
-
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
@@ -85,17 +82,19 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
-
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(ProjectDir)include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(ProjectDir)lib-vc2019</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;glfw3dll.lib;opengl32.lib;user32.lib;gdi32.lib;shell32.lib;glew32.lib;glu32.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -106,12 +105,15 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(ProjectDir)include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(ProjectDir)lib-vc2019</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;glfw3dll.lib;opengl32.lib;user32.lib;gdi32.lib;shell32.lib;glew32.lib;glu32.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -120,10 +122,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(ProjectDir)include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(ProjectDir)lib-vc2019</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;glfw3dll.lib;opengl32.lib;user32.lib;gdi32.lib;shell32.lib;glew32.lib;glu32.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -134,16 +139,57 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(ProjectDir)include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(ProjectDir)lib-vc2019</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;glfw3dll.lib;opengl32.lib;user32.lib;gdi32.lib;shell32.lib;glew32.lib;glu32.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
-
-  <ItemGroup></ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="SnejkyGL\lib_json\json_reader.cpp" />
+    <ClCompile Include="SnejkyGL\lib_json\json_value.cpp" />
+    <ClCompile Include="SnejkyGL\lib_json\json_writer.cpp" />
+    <ClCompile Include="SnejkyGL\Source\Camera.cpp" />
+    <ClCompile Include="SnejkyGL\Source\Engine.cpp" />
+    <ClCompile Include="SnejkyGL\Source\Face.cpp" />
+    <ClCompile Include="SnejkyGL\Source\GameObject.cpp" />
+    <ClCompile Include="SnejkyGL\Source\GameScreen.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="SnejkyGL\Source\Mesh.cpp" />
+    <ClCompile Include="SnejkyGL\Source\Object.cpp" />
+    <ClCompile Include="SnejkyGL\Source\Renderer.cpp" />
+    <ClCompile Include="SnejkyGL\Source\TestObject.cpp" />
+    <ClCompile Include="SnejkyGL\Source\Vector2.cpp" />
+    <ClCompile Include="SnejkyGL\Source\Vector3.cpp" />
+    <ClCompile Include="SnejkyGL\Source\Vertex.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="SnejkyGL\Camera.h" />
+    <ClInclude Include="SnejkyGL\Engine.h" />
+    <ClInclude Include="SnejkyGL\Face.h" />
+    <ClInclude Include="SnejkyGL\GameObject.h" />
+    <ClInclude Include="SnejkyGL\GameScreen.h" />
+    <ClInclude Include="SnejkyGL\lib_json\json_tool.h" />
+    <ClInclude Include="SnejkyGL\Mesh.h" />
+    <ClInclude Include="SnejkyGL\Object.h" />
+    <ClInclude Include="SnejkyGL\Renderer.h" />
+    <ClInclude Include="SnejkyGL\TestObject.h" />
+    <ClInclude Include="SnejkyGL\Vector2.h" />
+    <ClInclude Include="SnejkyGL\Vector3.h" />
+    <ClInclude Include="SnejkyGL\Vertex.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SnejkyGL\lib_json\json_valueiterator.inl" />
+    <None Include="SnejkyGL\Meshes\cube.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="SnejkyGL\lib_json\CMakeLists.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
