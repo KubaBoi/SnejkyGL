@@ -16,13 +16,17 @@ int main(void)
     int response = engine->initWindow(SCREEN_WIDTH, SCREEN_HEIGHT);
     if (response != 0) return response;
 
-    TestObject* testObject = new TestObject(10, 0, 10);
+    TestObject* testObject = new TestObject(5, 2, 10);
     engine->addGameObject(testObject);
+    for (int i = 0; i < 50; i++) {
+        TestObject* testObject1 = new TestObject(i-10, 2, 10);
+        engine->addGameObject(testObject1);
+    }
 
     // Loop until the user closes the window
     while (!glfwWindowShouldClose(engine->getWindow()))
     {
-        testObject->position[0] -= 0.001;
+        testObject->position[0] -= 0.005;
         
         if (testObject->position[2] < 0) {
             engine->gameScreen->camera->forward[2] = -1;

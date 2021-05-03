@@ -40,22 +40,47 @@ void Mesh::draw(Renderer* renderer, Camera* camera) {
 		}
 
 
-		GLfloat vertices[] =
-		{
+		GLfloat vertices[] = {
 			face->vertex1->getProjection()[0], face->vertex1->getProjection()[1], 0,
 			face->vertex2->getProjection()[0], face->vertex2->getProjection()[1], 0,
 			face->vertex3->getProjection()[0], face->vertex3->getProjection()[1], 0,
 		};
 
-		GLfloat color[] =
-		{
+		GLfloat color[] = {
 			face->getColor()[0], face->getColor()[1], face->getColor()[2],
 			face->getColor()[0], face->getColor()[1], face->getColor()[2],
 			face->getColor()[0], face->getColor()[1], face->getColor()[2]
 		};
 
 		renderer->drawTriangle(vertices, color);
+		drawEdges(renderer, face);
 	}
+}
+
+void Mesh::drawEdges(Renderer* renderer, Face* face) {
+	GLfloat lineVertice1[] = {
+			face->vertex1->getProjection()[0], face->vertex1->getProjection()[1], 0,
+			face->vertex2->getProjection()[0], face->vertex2->getProjection()[1], 0,
+	};
+
+	GLfloat lineVertice2[] = {
+		face->vertex1->getProjection()[0], face->vertex1->getProjection()[1], 0,
+		face->vertex3->getProjection()[0], face->vertex3->getProjection()[1], 0,
+	};
+
+	GLfloat lineVertice3[] = {
+		face->vertex3->getProjection()[0], face->vertex3->getProjection()[1], 0,
+		face->vertex2->getProjection()[0], face->vertex2->getProjection()[1], 0,
+	};
+
+	GLfloat blackColor[] = {
+			0, 0, 0,
+			0, 0, 0
+	};
+
+	renderer->drawLine(lineVertice1, blackColor, 1);
+	renderer->drawLine(lineVertice2, blackColor, 1);
+	renderer->drawLine(lineVertice3, blackColor, 1);
 }
 
 int Mesh::calculateColor(float* normal, Vertex* vertex, int color, float* light) {

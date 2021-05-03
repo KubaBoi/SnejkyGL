@@ -2,5 +2,5 @@
 
 TestObject::TestObject(float x, float y, float z) : GameObject(x, y, z) {
 	Mesh* mesh = getMesh();
-	mesh->loadMeshFromJson("SnejkyGL/Meshes/cube.json");
+	mesh->loadMeshFromJson("SnejkyGL/Meshes/pyramid.json");
 }

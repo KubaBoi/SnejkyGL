@@ -110,6 +110,8 @@
     <None Include="SnejkyGL\lib_json\json_valueiterator.inl">
       <Filter>Header Files</Filter>
     </None>
+    <None Include="..\..\..\..\Desktop\programy\Snejky2\EngineSource\meshes\pyramid.json" />
+    <None Include="SnejkyGL\Meshes\pyramid.json" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="SnejkyGL\lib_json\CMakeLists.txt" />

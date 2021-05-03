@@ -25,6 +25,8 @@ public:
 
 	void clearScreen();
 	void drawTriangle(GLfloat vertices[], GLfloat color[]);
+	void drawLine(GLfloat vertices[], GLfloat color[], int width);
+
 	void setBackground(float r, float g, float b, float a);
 };
 

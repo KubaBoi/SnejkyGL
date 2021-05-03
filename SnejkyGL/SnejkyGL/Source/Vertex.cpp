@@ -49,16 +49,16 @@ void Vertex::findProjection(Camera* camera) {
 			y = camera->centerOfScreen[1] + y;
 		}
 		else if (0 <= angle1 && angle1 <= M_PI_2 && angle2 >= M_PI_2) { //II.kvadrant
-			x = camera->centerOfScreen[0] + x;
-			y = camera->centerOfScreen[1] - y;
+			x = camera->centerOfScreen[0] - x;
+			y = camera->centerOfScreen[1] + y;
 		}
 		else if (angle1 >= M_PI_2 && angle2 >= M_PI_2) { //III.kvadrant
 			x = camera->centerOfScreen[0] - x;
 			y = camera->centerOfScreen[1] - y;
 		}
 		else if (angle1 >= M_PI_2 && 0 <= angle2 && angle2 <= M_PI_2) { //IV.kvadrant
-			x = camera->centerOfScreen[0] - x;
-			y = camera->centerOfScreen[1] + y;
+			x = camera->centerOfScreen[0] + x;
+			y = camera->centerOfScreen[1] - y;
 		}
 	}
 

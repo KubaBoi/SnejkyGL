@@ -25,6 +25,7 @@ class Mesh
 {
 private:
 	void updateVertices(Camera* camera);
+	void drawEdges(Renderer* renderer, Face* face);
 	int calculateColor(float* normal, Vertex* vertex, int color, float* light);
 	Json::Value loadJson(string path);
 
