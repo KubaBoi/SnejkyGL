@@ -10,7 +10,8 @@ class Face
 private:
 	Vector3* vector3 = new Vector3();
 
-	int* color = new int[3];
+	float* color = new float[3];
+	float* newColor = new float[3];
 
 	float* v = new float[3];
 	float* u = new float[3];
@@ -24,9 +25,11 @@ public:
 
 	Face(Vertex* vert1, Vertex* vert2, Vertex* vert3);
 
-	int* getColor();
+	float* getColor();
+	float* getNewColor();
 
-	void setColor(int r, int g, int b);
+	void setColor(float r, float g, float b);
+	void setNewColor(float r, float g, float b);
 	void setNormal();
 };
 

@@ -11,7 +11,6 @@
 class GameObject: public Object 
 {
 private:
-	float* oldPosition = new float[3];
 	Mesh* mesh;
 
 public:

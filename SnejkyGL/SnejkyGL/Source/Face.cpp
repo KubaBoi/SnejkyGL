@@ -10,14 +10,24 @@ Face::Face(Vertex* vert1, Vertex* vert2, Vertex* vert3) {
 	color[2] = 255;
 }
 
-int* Face::getColor() {
+float* Face::getColor() {
 	return color;
 }
 
-void Face::setColor(int r, int g, int b) {
+float* Face::getNewColor() {
+	return newColor;
+}
+
+void Face::setColor(float r, float g, float b) {
 	color[0] = r;
 	color[1] = g;
 	color[2] = b;
+}
+
+void Face::setNewColor(float r, float g, float b) {
+	newColor[0] = r;
+	newColor[1] = g;
+	newColor[2] = b;
 }
 
 void Face::setNormal() {

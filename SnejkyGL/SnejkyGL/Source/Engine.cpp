@@ -63,12 +63,14 @@ void Engine::draw() {
 
 	renderer->clearScreen();
 	gameScreen->draw(renderer);
+}
 
-	// Swap front and back buffers
-	glfwSwapBuffers(window);
+void Engine::render() {
+    // Swap front and back buffers
+    glfwSwapBuffers(window);
 
-	// Poll for and process events
-	glfwPollEvents();
+    // Poll for and process events
+    glfwPollEvents();
 }
 
 void Engine::addGameObject(Object* object) {

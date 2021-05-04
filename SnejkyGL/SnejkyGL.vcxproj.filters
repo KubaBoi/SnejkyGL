@@ -63,6 +63,15 @@
     <ClCompile Include="SnejkyGL\lib_json\json_writer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SnejkyGL\Objects\Source\Cube.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SnejkyGL\Objects\Source\Pyramid.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SnejkyGL\Objects\Source\Plain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SnejkyGL\Camera.h">
@@ -104,13 +113,21 @@
     <ClInclude Include="SnejkyGL\lib_json\json_tool.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="SnejkyGL\Objects\Cube.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SnejkyGL\Objects\Pyramid.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SnejkyGL\Objects\Plain.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="SnejkyGL\Meshes\cube.json" />
     <None Include="SnejkyGL\lib_json\json_valueiterator.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="..\..\..\..\Desktop\programy\Snejky2\EngineSource\meshes\pyramid.json" />
     <None Include="SnejkyGL\Meshes\pyramid.json" />
   </ItemGroup>
   <ItemGroup>

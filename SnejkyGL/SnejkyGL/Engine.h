@@ -13,18 +13,19 @@
 class Engine
 {
 private:
-	Renderer* renderer;
 	GLFWwindow* window;
 
 public:
 	bool running;
 	GameScreen* gameScreen;
+	Renderer* renderer;
 
 	Engine();
 	int initWindow(int width, int height);
 
 	void update();
 	void draw();
+	void render();
 
 	void addGameObject(Object* object);
 	void removeGameObject(Object* object);

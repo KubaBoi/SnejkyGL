@@ -4,23 +4,27 @@ Mesh::Mesh(float* pPosition) {
 	position = pPosition;
 }
 
-//pPosition je stara pozice objektu
-void Mesh::update(float* pPosition) {
-	vector3->newVector(transformVector, pPosition, position);
-
+void Mesh::update() {
 	for (int i = 0; i < vertices.size(); i++) {
-		vector3->moveVector(vertices[i]->getPosition(), transformVector); //posune vertex
+		realVertices[i]->getPosition()[0] = position[0] + (vertices[i]->getPosition()[0] * size);
+		realVertices[i]->getPosition()[1] = position[1] + (vertices[i]->getPosition()[1] * size);
+		realVertices[i]->getPosition()[2] = position[2] + (vertices[i]->getPosition()[2] * size);
 	}
 }
 
 void Mesh::updateVertices(Camera* camera) {
 	for (int i = 0; i < vertices.size(); i++) {
-		vertices[i]->update(camera); //vypocte obraz do 2d prostoru
+		realVertices[i]->update(camera); //vypocte obraz do 2d prostoru
 	}
 }
 
 void Mesh::draw(Renderer* renderer, Camera* camera) {
 	updateVertices(camera);
+
+	float* light = new float[3];
+	light[0] = 0;
+	light[1] = 0;
+	light[2] = 0;
 
 	for (int i = 0; i < faces.size(); i++) {
 		Face* face = faces[i];
@@ -39,6 +43,7 @@ void Mesh::draw(Renderer* renderer, Camera* camera) {
 			continue;
 		}
 
+		calculateColor(face, light);
 
 		GLfloat vertices[] = {
 			face->vertex1->getProjection()[0], face->vertex1->getProjection()[1], 0,
@@ -47,9 +52,9 @@ void Mesh::draw(Renderer* renderer, Camera* camera) {
 		};
 
 		GLfloat color[] = {
-			face->getColor()[0], face->getColor()[1], face->getColor()[2],
-			face->getColor()[0], face->getColor()[1], face->getColor()[2],
-			face->getColor()[0], face->getColor()[1], face->getColor()[2]
+			face->getNewColor()[0] / 255, face->getNewColor()[1] / 255, face->getNewColor()[2] / 255,
+			face->getNewColor()[0] / 255, face->getNewColor()[1] / 255, face->getNewColor()[2] / 255,
+			face->getNewColor()[0] / 255, face->getNewColor()[1] / 255, face->getNewColor()[2] / 255
 		};
 
 		renderer->drawTriangle(vertices, color);
@@ -83,37 +88,64 @@ void Mesh::drawEdges(Renderer* renderer, Face* face) {
 	renderer->drawLine(lineVertice3, blackColor, 1);
 }
 
-int Mesh::calculateColor(float* normal, Vertex* vertex, int color, float* light) {
+void Mesh::calculateColor(Face* face, float* light) {
 	double brightness = 1;
 
 	//vektor mezi vertexem a svetlem
-	vector3->newVector(lv, vertex->getPosition(), light);
+	vector3->newVector(lv, face->vertex1->getPosition(), light);
 	
-	double angle = int((vector3->angle(lv, normal) * 180 / M_PI) * brightness);
+	double angle = int((vector3->angle(lv, face->normal) * 180 / M_PI) * brightness);
 
-	//int r = 
-	return color;
+	face->setNewColor(
+		face->getColor()[0] - angle,
+		face->getColor()[1] - angle,
+		face->getColor()[2] - angle
+	);
 }
 
 //"SnejkyGL/Meshes/cube.json"
-void Mesh::loadMeshFromJson(string path) {
+void Mesh::loadMeshFromJson(string path, float pSize, float color[]) {
 	Json::Value data = loadJson(path);
+	size = pSize;
 
 	for (int i = 0; i < data.get("vertices", "default").size(); i++) {
 		vertices.push_back(new Vertex(
-			position[0] + data.get("vertices", "default")[i][0].asFloat(),
-			position[1] + data.get("vertices", "default")[i][1].asFloat(),
-			position[2] + data.get("vertices", "default")[i][2].asFloat()
+			data.get("vertices", "default")[i][0].asFloat(),
+			data.get("vertices", "default")[i][1].asFloat(),
+			data.get("vertices", "default")[i][2].asFloat()
 		));
+		realVertices.push_back(new Vertex(0, 0, 0));
 	}
 
 	for (int i = 0; i < data.get("triangles", "default").size(); i++) {
 		faces.push_back(new Face(
-			vertices[data.get("triangles", "default")[i][0].asInt()],
-			vertices[data.get("triangles", "default")[i][1].asInt()],
-			vertices[data.get("triangles", "default")[i][2].asInt()]
+			realVertices[data.get("triangles", "default")[i][0].asInt()],
+			realVertices[data.get("triangles", "default")[i][1].asInt()],
+			realVertices[data.get("triangles", "default")[i][2].asInt()]
 		));
 	}
+
+	float r, g, b;
+	if (color == NULL) {
+		for (int i = 0; i < data.get("colors", "default").size(); i++) {
+			r = data.get("colors", "default")[i][0].asFloat();
+			g = data.get("colors", "default")[i][1].asFloat();
+			b = data.get("colors", "default")[i][2].asFloat();
+			faces[i]->setColor(r, g, b);
+		}
+	}
+	else {
+		r = color[0];
+		g = color[1];
+		b = color[2];
+		for (int i = 0; i < data.get("triangles", "default").size(); i++) {
+			faces[i]->setColor(r, g, b);
+		}
+	}
+}
+
+void Mesh::setSize(float pSize) {
+	size = pSize;
 }
 
 Json::Value Mesh::loadJson(string path) {

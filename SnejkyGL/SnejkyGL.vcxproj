@@ -151,6 +151,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="SnejkyGL\Objects\Source\Plain.cpp" />
+    <ClCompile Include="SnejkyGL\Objects\Source\Pyramid.cpp" />
+    <ClCompile Include="SnejkyGL\Objects\Source\Cube.cpp" />
     <ClCompile Include="SnejkyGL\lib_json\json_reader.cpp" />
     <ClCompile Include="SnejkyGL\lib_json\json_value.cpp" />
     <ClCompile Include="SnejkyGL\lib_json\json_writer.cpp" />
@@ -169,6 +172,9 @@
     <ClCompile Include="SnejkyGL\Source\Vertex.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="SnejkyGL\Objects\Plain.h" />
+    <ClInclude Include="SnejkyGL\Objects\Pyramid.h" />
+    <ClInclude Include="SnejkyGL\Objects\Cube.h" />
     <ClInclude Include="SnejkyGL\Camera.h" />
     <ClInclude Include="SnejkyGL\Engine.h" />
     <ClInclude Include="SnejkyGL\Face.h" />
@@ -184,7 +190,6 @@
     <ClInclude Include="SnejkyGL\Vertex.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\..\..\Desktop\programy\Snejky2\EngineSource\meshes\pyramid.json" />
     <None Include="SnejkyGL\lib_json\json_valueiterator.inl" />
     <None Include="SnejkyGL\Meshes\cube.json" />
     <None Include="SnejkyGL\Meshes\pyramid.json" />
