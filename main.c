@@ -14,7 +14,7 @@ void myInit (void)
     glClearColor(0.0, 0.0, 0.0, 1.0);
       
     // making picture color green (in RGB mode), as middle argument is 1.0
-    glColor3f(0.0, 1.0, 0.0);
+    glColor3f(1.0, 0.0, 0.0);
       
     // breadth of picture boundary is 1 pixel
     glPointSize(1.0);
